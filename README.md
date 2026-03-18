@@ -9,7 +9,7 @@ This project analyzes customer credit behavior to identify patterns associated w
 The dataset used in this project contains information on credit card clients, including demographic characteristics, credit limits, billing amounts, payment history, and default status.
 
 The target variable is a binary indicator:
- **default payment next month**
+**default payment next month**
 
 1 = Default
 
@@ -54,16 +54,13 @@ These represent the customer’s outstanding balance over time.
 
 These variables reflect the customer’s actual repayment behavior.
 
-
-
-
 #### Reference
 Yeh, I. (2009). Default of Credit Card Clients [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C55S3H.
 
 ## Data Cleaning
-Removed irrelevant columns and corrected column names for better readability and analysis.
-Checked for missing values and verified that the dataset did not contain significant null data affecting the analysis.
-Determination of outliers (in this case they are not eliminated since the behavior corresponds to the normal range)
+* Removed irrelevant columns and corrected column names for better readability and analysis.
+* Checked for missing values and verified that the dataset did not contain significant null data affecting the analysis.
+* Determination of outliers (in this case they are not eliminated since the behavior corresponds to the normal range)
 
 ## Feature Engineering
 To better capture customer behavior, new variables were created:
@@ -77,8 +74,42 @@ To enhance the analysis, additional variables were created:
 * AVG_BILL: Average monthly bill amount.
 * MAX_DEL_PAY: Maximum delay recorded across all months.
 
+## Data Transformation
+
 Converted raw variables into meaningful analytical features.
 
 Created categorical segments (e.g., credit limit, payment behavior, and debt utilization) to facilitate business-oriented analysis.
 
 Prepared the dataset for visualization and behavioral analysis.
+
+## Analysis and Insights
+**Correlation Analysis Interpretation**
+The correlation matrix shows the relationship between key credit variables: credit limit, total bill, total payments, and debt ratio.
+<p align="center">
+  <img src="images/correlation.png" width="600">
+</p>
+
+**1. Credit Limit vs Financial Behavior (LIMIT_BAL - TOTAL_BILL and TOTAL_PAY)** There is a moderate positive correlation, indicating that customers with higher credit limits tend to be more active, not necessarily riskier.
+
+**2. Debt Accumulation Dynamics (TOTAL_BILL  and DEBT_RATIO)** Stronger positive correlation, customers with higher outstanding balances tend to have higher debt relative to their credit limit.
+   
+**3. Credit Limit vs Debt Ratio (LIMIT_BAL & DEBT_RATIO)** This is a moderate negative correlation, higher-income clients may manage credit more efficiently. Lower-limit customers may be more financially constrained.
+
+
+I identified that debt ratio is more informative than total payments when assessing credit risk, and that customers with higher credit limits tend to maintain lower relative debt exposure, suggesting better financial stability.
+
+<p align="center">
+  <img src="images/default_rate_vs_age_group.png" width="600">
+</p>
+
+
+<p align="center">
+  <img src="images/default_rate_vs_credit_limit.png" width="600">
+</p>
+
+
+<p align="center">
+  <img src="images/scatter.png" width="600">
+</p>
+
+
